@@ -117,3 +117,7 @@ CALL `cloud`.`IDEMPOTENT_ADD_COLUMN`('cloud.vpc_offerings','conserve_mode', 'tin
 
 --- Disable/enable NICs
 CALL `cloud`.`IDEMPOTENT_ADD_COLUMN`('cloud.nics','enabled', 'TINYINT(1) NOT NULL DEFAULT 1 COMMENT ''Indicates whether the NIC is enabled or not'' ');
+
+-- Increase length of value of extension details from 255 to 4096 to support longer details value
+CALL `cloud`.`IDEMPOTENT_CHANGE_COLUMN`('cloud.extension_details', 'value', 'value', 'VARCHAR(4096)');
+CALL `cloud`.`IDEMPOTENT_CHANGE_COLUMN`('cloud.extension_resource_map_details', 'value', 'value', 'VARCHAR(4096)');
